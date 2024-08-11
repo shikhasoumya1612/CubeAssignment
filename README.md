@@ -8,7 +8,7 @@
  ## APIs used 
   ### `1. User Data API`
 [ This is the json placeholder API]
-(https://jsonplaceholder.typicode.com/users)
+(https://randomuser.me/api/?page=1&results=8)
 ### `2. Pics generator API`
  [Lorem Picsum image generator]
  (https://picsum.photos/400)
