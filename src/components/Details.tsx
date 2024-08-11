@@ -43,12 +43,12 @@ const Details: React.FC<DetailsProps> = ({
     <>
       {!showLoader && (
         <div className="details-container">
-          <h1 className="details-heading">{user.name}</h1>
+          <h1 className="details-heading">{`${user.name.title} ${user.name.first} ${user.name.last}`}</h1>
           <table className="details-table">
             <tbody>
               <tr>
-                <th>Username:</th>
-                <td>{user.username}</td>
+                <th>Phone:</th>
+                <td>{user.phone}</td>
               </tr>
               <tr>
                 <th>Email:</th>
@@ -56,19 +56,19 @@ const Details: React.FC<DetailsProps> = ({
               </tr>
               <tr>
                 <th>Street:</th>
-                <td>{user.address.street}</td>
+                <td>{`${user.location.street.number}, ${user.location.street.name}`}</td>
               </tr>
               <tr>
-                <th>Suite:</th>
-                <td>{user.address.suite}</td>
+                <th>State:</th>
+                <td>{user.location.state}</td>
               </tr>
               <tr>
                 <th>City:</th>
-                <td>{user.address.city}</td>
+                <td>{user.location.city}</td>
               </tr>
               <tr>
                 <th>Zipcode:</th>
-                <td>{user.address.zipcode}</td>
+                <td>{user.location.postcode}</td>
               </tr>
             </tbody>
           </table>

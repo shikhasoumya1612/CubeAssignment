@@ -14,10 +14,10 @@ const Card: React.FC<CardProps> = ({ user, onClick, selected }) => {
       className={`card ${selected ? "selected" : ""}`}
       onClick={() => onClick(user)}
     >
-      <h2>{user.name}</h2>
+      <h2>{`${user.name.title} ${user.name.first} ${user.name.last}`}</h2>
       <div className="card-body">
         <p>
-          <strong>Username:</strong> {user.username}
+          <strong>Phone:</strong> {user.phone}
         </p>
         <p>
           <strong>Email:</strong> {user.email}
@@ -25,11 +25,10 @@ const Card: React.FC<CardProps> = ({ user, onClick, selected }) => {
         <p>
           <strong>Address:</strong>
         </p>
+        <p>{`${user.location.street.number}, ${user.location.street.name}`} </p>
         <p>
-          {user.address.street}, {user.address.suite}
-        </p>
-        <p>
-          {user.address.city}, {user.address.zipcode}
+          {user.location.city}, {user.location.state}, {user.location.country},
+          {" " + user.location.postcode}
         </p>
       </div>
     </div>

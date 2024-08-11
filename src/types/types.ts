@@ -1,14 +1,24 @@
-export interface Address {
-  street: string;
-  suite: string;
+export interface Location {
+  street: {
+    number: number;
+    name: string;
+  };
   city: string;
-  zipcode: string;
+  state: string;
+  country: string;
+  postcode: number;
 }
 
 export interface User {
-  id: number;
-  name: string;
-  username: string;
+  name: {
+    title: string;
+    first: string;
+    last: string;
+  };
+  location: Location;
   email: string;
-  address: Address;
+  login: {
+    uuid: string;
+  };
+  phone: string;
 }

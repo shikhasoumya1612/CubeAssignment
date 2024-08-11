@@ -15,8 +15,9 @@ const CustomerInfo: React.FC<CustomerInfoProps> = ({
   setShowLoader,
 }) => {
   const [users, setUsers] = useState<User[]>([]);
-  const [selectedUser, setSelectedUser] = useState<User | undefined>();
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState<Boolean>(false);
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   const selectUser = (user: User) => {
     setIsSidebarOpen(false);
@@ -29,15 +30,15 @@ const CustomerInfo: React.FC<CustomerInfoProps> = ({
 
   useEffect(() => {
     setShowLoader(true);
-    const USER_API = "https://jsonplaceholder.typicode.com/users";
+    const USER_API = `https://randomuser.me/api/?page=${currentPage}&results=8`;
     fetch(USER_API)
       .then((res) => res.json())
       .then((res) => {
         setShowLoader(false);
-        setUsers(res);
-        setSelectedUser(res[0]);
+        setUsers(res.results);
+        setSelectedUser(res.results[0]);
       });
-  }, [setShowLoader]);
+  }, [currentPage, setShowLoader]);
 
   return (
     <div>
@@ -51,6 +52,8 @@ const CustomerInfo: React.FC<CustomerInfoProps> = ({
           onClick={selectUser}
           selectedUser={selectedUser}
           setShowLoader={setShowLoader}
+          setCurrentPage={setCurrentPage}
+          currentPage={currentPage}
         />
       </div>
       <div className="content">
@@ -60,6 +63,8 @@ const CustomerInfo: React.FC<CustomerInfoProps> = ({
             onClick={selectUser}
             selectedUser={selectedUser}
             setShowLoader={setShowLoader}
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
           />
         </div>
         <div className={`col-9 ${isSidebarOpen ? "shifted" : ""}`}>
